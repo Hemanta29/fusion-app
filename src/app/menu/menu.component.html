@@ -5,7 +5,11 @@
       <hr />
     </div>
   </div>
-  <div fxFlex>
+  <div [hidden]="dishes">
+    <mat-spinner></mat-spinner>
+    <h4>Loading . . . Please Wait</h4>
+  </div>
+  <div fxFlex *ngIf="dishes">
     <mat-grid-list cols="2" rowHeight="200px">
       <mat-grid-tile
         *ngFor="let dish of dishes"
