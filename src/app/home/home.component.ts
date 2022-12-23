@@ -23,7 +23,7 @@ export class HomeComponent {
   ) { }
 
   ngOnInit() {
-    this.dish = this.dishService.getFeaturedDish();
+    this.dishService.getFeaturedDish().then(dish => this.dish = dish);;
     this.promotion = this.promotionService.getFeaturedPromotion();
     this.leader = this.leaderService.getFeaturedLeader();
   }
