@@ -48,7 +48,15 @@
             formControlName="firstName"
             placeholder="First Name"
             type="text"
+            required
           />
+          <mat-error
+            *ngIf="
+              feedbackForm.get('firstName')?.hasError('required') &&
+              feedbackForm.get('firstName')?.touched
+            "
+            >First name is required</mat-error
+          >
         </mat-form-field>
         <mat-form-field class="half-width">
           <input
@@ -56,7 +64,15 @@
             formControlName="lastName"
             placeholder="Last Name"
             type="text"
+            required
           />
+          <mat-error
+            *ngIf="
+              feedbackForm.get('lastName')?.hasError('required') &&
+              feedbackForm.get('lastName')?.touched
+            "
+            >Last name is required</mat-error
+          >
         </mat-form-field>
       </p>
       <p>
@@ -66,7 +82,15 @@
             formControlName="telNum"
             placeholder="Tel. Number"
             type="tel"
+            required
           />
+          <mat-error
+            *ngIf="
+              feedbackForm.get('telNum')?.hasError('required') &&
+              feedbackForm.get('telNum')?.touched
+            "
+            >Tel. number is required</mat-error
+          >
         </mat-form-field>
         <mat-form-field class="half-width">
           <input
@@ -74,7 +98,15 @@
             formControlName="email"
             placeholder="Email"
             type="email"
+            required
           />
+          <mat-error
+            *ngIf="
+              feedbackForm.get('email')?.hasError('required') &&
+              feedbackForm.get('email')?.touched
+            "
+            >Email ID is required</mat-error
+          >
         </mat-form-field>
       </p>
       <table class="form-size">
