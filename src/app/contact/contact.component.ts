@@ -12,7 +12,7 @@ export class ContactComponent implements OnInit {
   feedback!: Feedback;
   contactType = ContactType;
 
-  @ViewChild('feedbackForm') feedbackFormDirective: any;
+  @ViewChild('fBackForm') feedbackFormDirective: { resetForm: () => void; } | undefined
 
   constructor(private fb: FormBuilder) {
     this.createForm();
@@ -45,6 +45,6 @@ export class ContactComponent implements OnInit {
       contactType: 'None',
       message: ''
     });
-    this.feedbackFormDirective.resetForm();
+    this.feedbackFormDirective?.resetForm();
   }
 }
