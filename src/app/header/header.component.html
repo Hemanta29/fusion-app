@@ -3,7 +3,7 @@
   <a routerLinkActive="active" mat-button routerLink="/home"
     ><span class="fa fa-home fa-lg"></span> Home</a
   >
-  <a routerLinkActive="active" mat-button
+  <a routerLinkActive="active" mat-button routerLink="/about"
     ><span class="fa fa-info fa-lg"></span> About</a
   >
   <a routerLinkActive="active" mat-button routerLink="/menu"
@@ -11,6 +11,10 @@
   >
   <a routerLinkActive="active" mat-button routerLink="/contactus"
     ><span class="fa fa-address-card fa-lg"></span> Contact</a
+  >
+  <span class="flex-spacer"></span>
+  <a mat-button (click)="openLoginForm()"
+    ><span class="fa fa-sign-in fa-lg"></span> Login</a
   >
 </mat-toolbar>
 

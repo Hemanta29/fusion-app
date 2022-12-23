@@ -2,6 +2,7 @@ $lt-gray: #ddd;
 $background-dark: #512da8;
 $background-light: #9575cd;
 $background-pale: #d1c4e9;
+$background-moredark: #4527a0;
 
 @mixin zero-margin($pad-up-down, $pad-left-right) {
   margin: 0px auto;
@@ -36,4 +37,8 @@ $background-pale: #d1c4e9;
 .btn-mail {
   color: #fff !important;
   background-color: #512da8 !important;
+}
+
+.active {
+  background: $background-moredark;
 }
