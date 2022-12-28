@@ -1,5 +1,5 @@
 import { LeaderService } from './../services/leader.service';
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { DishService } from '../services/dish.service';
 import { PromotionService } from '../services/promotion.service';
 import { Dish } from '../shared/dish';
@@ -19,7 +19,8 @@ export class HomeComponent {
   constructor(
     private dishService: DishService,
     private promotionService: PromotionService,
-    private leaderService: LeaderService
+    private leaderService: LeaderService,
+    @Inject('BaseURL') public BaseURL: string
   ) { }
 
   ngOnInit() {

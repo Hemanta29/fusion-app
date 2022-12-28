@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
@@ -39,6 +40,7 @@ import { PromotionService } from './services/promotion.service';
 
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { LoginComponent } from './login/login.component';
+import { baseURL } from './shared/baseurl';
 
 @NgModule({
   declarations: [
@@ -56,6 +58,7 @@ import { LoginComponent } from './login/login.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     MatToolbarModule,
     MatListModule,
     FlexLayoutModule,
@@ -71,10 +74,14 @@ import { LoginComponent } from './login/login.component';
     MatProgressSpinnerModule,
     FormsModule,
     ReactiveFormsModule,
-    MatSliderModule
+    MatSliderModule,
   ],
-  exports: [MatFormFieldModule, MatInputModule, MatSliderModule],
-  providers: [DishService, PromotionService, LeaderService],
+  providers: [
+    DishService,
+    PromotionService,
+    LeaderService,
+    { provide: 'BaseURL', useValue: baseURL }
+  ],
   bootstrap: [AppComponent],
   entryComponents: [
     LoginComponent

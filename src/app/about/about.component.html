@@ -80,7 +80,7 @@
         <mat-list-item *ngFor="let leader of leaders">
           <img
             matListItemAvatar
-            src="{{ leader.image }}"
+            src="{{ BaseURL + leader.image }}"
             alt="{{ leader.name }}"
           />
           <h1 matListItemTitle>{{ leader.name }}</h1>
