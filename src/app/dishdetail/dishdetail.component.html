@@ -52,5 +52,83 @@
       <mat-spinner></mat-spinner>
       <h4>Loading . . . Please Wait</h4>
     </div>
+    <div fxLayout="column" fxFlexOffset="20px" class="form-size">
+      <div *ngIf="commentForm.valid" fxLayout="column">
+        <h3>Preview</h3>
+        <mat-list fxFlex>
+          <mat-list-item>
+            <h1 matListItemTitle>{{ commentForm.value.comment }}</h1>
+            <span matListItemLine> {{ commentForm.value.rating }} Stars</span>
+            <p matListItemLine>
+              <span
+                >-- {{ commentForm.value.author }}
+                {{ commentForm.value.date | date }}</span
+              >
+            </p>
+          </mat-list-item>
+        </mat-list>
+      </div>
+      <!-- <p>{{ commentForm.value | json }}</p> -->
+      <form
+        novalidate
+        [formGroup]="commentForm"
+        #refCommentForm="ngForm"
+        (ngSubmit)="onSubmit()"
+      >
+        <p>
+          <mat-form-field class="half-width">
+            <input
+              matInput
+              formControlName="author"
+              placeholder="Name"
+              type="text"
+              required
+            />
+            <mat-error *ngIf="formErrors.author">{{
+              formErrors.author
+            }}</mat-error>
+          </mat-form-field>
+        </p>
+        <div class="half-width">
+          <mat-slider
+            class=""
+            max="5"
+            min="1"
+            step="1"
+            discrete="true"
+            showTickMarks="true"
+          >
+            <input
+              matSliderThumb
+              formControlName="rating"
+              [(ngModel)]="value"
+            />
+          </mat-slider>
+        </div>
+        <p>
+          <mat-form-field class="half-width">
+            <mat-label>Leave a comment</mat-label>
+            <textarea
+              matInput
+              formControlName="comment"
+              placeholder="Ex. It makes me feel..."
+              required
+            ></textarea>
+          </mat-form-field>
+          <mat-error *ngIf="formErrors.comment">{{
+            formErrors.comment
+          }}</mat-error>
+        </p>
+
+        <button
+          type="submit"
+          mat-button
+          class="background-primary text-floral-white"
+          [disabled]="commentForm.invalid"
+        >
+          Submit
+        </button>
+      </form>
+    </div>
   </div>
 </div>
