@@ -16,9 +16,11 @@ import { Comment } from '../shared/comment';
 })
 export class DishdetailComponent implements OnInit {
   @Input() dish!: Dish;
+  dishCopy!: Dish;
 
   errMessage!: string;
   errMessageDish: any;
+  errorMessageSave: any;
 
   dishIds!: string[];
   prev!: string;
@@ -68,7 +70,11 @@ export class DishdetailComponent implements OnInit {
     this.route.params.pipe(
       switchMap((params: Params) => this.dishService.getDish(params['id']))
     ).subscribe({
-      next: dish => { this.dish = dish; this.setPrevNext(dish.id) },
+      next: dish => {
+        this.dish = dish;
+        this.dishCopy = dish;
+        this.setPrevNext(dish.id)
+      },
       error: errMessage => this.errMessage = <any>errMessage
     })
 
@@ -118,8 +124,18 @@ export class DishdetailComponent implements OnInit {
 
   onSubmit() {
     this.comment = this.commentForm.value;
-    console.log(this.comment);
-    this.dish.comments.push(this.comment);
+    // this.dish.comments.push(this.comment);
+    this.dishCopy.comments.push(this.comment);
+    this.dishService.putDish(this.dishCopy).subscribe({
+      next: dish => {
+        this.dish = dish; this.dishCopy = dish;
+      },
+      error: errorMessageSave => {
+        this.dish = new Dish();
+        this.dishCopy = new Dish();
+        this.errorMessageSave = <any>errorMessageSave;
+      }
+    })
     this.commentForm.reset({
       author: '',
       range: 5,
