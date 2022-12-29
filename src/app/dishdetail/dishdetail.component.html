@@ -9,7 +9,7 @@
 >
   <div fxFlex="100" fxLayoutGap="50px">
     <div fxFlex="40" fxLayout="column">
-      <mat-card *ngIf="dish" [@visibility]="visibility">
+      <mat-card *ngIf="dish" [@visibility]="visibility" [@expand]>
         <mat-card-header>
           <mat-card-title>
             <h3 *ngIf="dish">{{ dish.name | uppercase }}</h3>
@@ -54,7 +54,7 @@
 
     <div fxFlex="40" fxLayout="column">
       <h3>Comments</h3>
-      <mat-list fxFlex *ngIf="dish" [@visibility]="visibility">
+      <mat-list fxFlex *ngIf="dish" [@visibility]="visibility" [@expand]>
         <mat-list-item *ngFor="let comment of dish.comments">
           <h1 matListItemTitle>{{ comment.comment }}</h1>
           <span matListItemLine> {{ comment.rating }} Stars</span>

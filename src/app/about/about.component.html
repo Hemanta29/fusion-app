@@ -76,7 +76,7 @@
           <h1>{{ leader.name | uppercase }}</h1>
         </mat-grid-tile-footer>
       </mat-grid-tile> -->
-      <mat-list *ngIf="leaders">
+      <mat-list *ngIf="leaders" [@expand]>
         <mat-list-item *ngFor="let leader of leaders">
           <img
             matListItemAvatar
