@@ -17,6 +17,9 @@ import { Comment } from '../shared/comment';
 export class DishdetailComponent implements OnInit {
   @Input() dish!: Dish;
 
+  errMessage!: string;
+  errMessageDish: any;
+
   dishIds!: string[];
   prev!: string;
   next!: string;
@@ -58,10 +61,17 @@ export class DishdetailComponent implements OnInit {
     // const id = +this.route.snapshot.params['id'];
     // console.log(id);
     // this.dishService.getDish(id).subscribe(dish => this.dish = dish);
-    this.dishService.getDishIDs().subscribe(dishIds => this.dishIds = dishIds);
+    this.dishService.getDishIDs().subscribe({
+      next: dishIds => this.dishIds = dishIds,
+      error: errMessage => this.errMessageDish = <any>errMessage
+    });
     this.route.params.pipe(
       switchMap((params: Params) => this.dishService.getDish(params['id']))
-    ).subscribe(dish => { this.dish = dish; this.setPrevNext(dish.id); })
+    ).subscribe({
+      next: dish => { this.dish = dish; this.setPrevNext(dish.id) },
+      error: errMessage => this.errMessage = <any>errMessage
+    })
+
   }
   createForm() {
     this.commentForm = this.fb.group({

@@ -15,6 +15,9 @@ export class HomeComponent {
   dish!: Dish;
   promotion!: Promotion;
   leader!: Leader;
+  errMessageDish!: string;
+  errMessagePromo!: string;
+  errMessageLeader!: string;
 
   constructor(
     private dishService: DishService,
@@ -24,12 +27,17 @@ export class HomeComponent {
   ) { }
 
   ngOnInit() {
-    // this.dishService.getFeaturedDish().then(dish => this.dish = dish);
-    // this.promotionService.getFeaturedPromotion().then(promotion => this.promotion = promotion);
-    // this.leaderService.getFeaturedLeader().then(leader => this.leader = leader);
-
-    this.dishService.getFeaturedDish().subscribe(dish => this.dish = dish);
-    this.promotionService.getFeaturedPromotion().subscribe(promotion => this.promotion = promotion);
-    this.leaderService.getFeaturedLeader().subscribe(leader => this.leader = leader);
+    this.dishService.getFeaturedDish().subscribe({
+      next: dish => this.dish = dish,
+      error: errMessage => this.errMessageDish = <any>errMessage
+    })
+    this.promotionService.getFeaturedPromotion().subscribe({
+      next: promotion => this.promotion = promotion,
+      error: errMessage => this.errMessagePromo = <any>errMessage
+    })
+    this.leaderService.getFeaturedLeader().subscribe({
+      next: leader => this.leader = leader,
+      error: errMessage => this.errMessageLeader = <any>errMessage
+    })
   }
 }

@@ -9,10 +9,14 @@ import { Component, Inject } from '@angular/core';
 })
 export class AboutComponent {
   leaders: Leader[] = [];
+  errMessage!: string;
   constructor(private leaderService: LeaderService,
     @Inject('BaseURL') public BaseURL: string) { }
 
   ngOnInit(): void {
-    this.leaderService.getLeaders().subscribe(leaders => this.leaders = leaders);
+    this.leaderService.getLeaders().subscribe({
+      next: leaders => this.leaders = leaders,
+      error: errMessage => this.errMessage = <any>errMessage
+    });
   }
 }
